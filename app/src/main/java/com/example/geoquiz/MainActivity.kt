@@ -29,6 +29,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlin.inc
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material3.Button
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
 
 data class Question(
     val text: String,
@@ -100,6 +104,39 @@ fun DemoScreen(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(Modifier.height(32.dp))
+
+        if (!answered) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Button(
+                    onClick = { onAnswer(true) },
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text("True", fontSize = 18.sp)
+                }
+                Button(
+                    onClick = { onAnswer(false) },
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text("False", fontSize = 18.sp)
+                }
+            }
+        }
+
+        if (answered && !isLast) {
+            Spacer(Modifier.height(24.dp))
+            Button(
+                onClick = {
+                    currentIndex++
+                    answered = false
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Next", fontSize = 18.sp)
+            }
+        }
     }
 }
 
