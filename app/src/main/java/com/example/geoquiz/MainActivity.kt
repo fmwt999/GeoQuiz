@@ -13,6 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.geoquiz.ui.theme.GeoQuizTheme
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 data class Question(
     val text: String,
@@ -43,6 +48,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun DemoScreen(modifier: Modifier = Modifier) {
+    var currentIndex by remember { mutableIntStateOf(0) }
+    var score by remember { mutableIntStateOf(0) }
+    var answered by remember { mutableStateOf(false) }   // ответ дан на текущий вопрос
+    var showResult by remember { mutableStateOf(false) } // показывать итоговую панель
 
 }
 
