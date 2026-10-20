@@ -138,6 +138,23 @@ fun DemoScreen(modifier: Modifier = Modifier) {
             }
         }
     }
+    if (showResult) {
+        AlertDialog(
+            onDismissRequest = { },
+            title = { Text("Результат") },
+            text = { Text("Правильных ответов: $score из ${questionBank.size}") },
+            confirmButton = {
+                TextButton(onClick = {
+                    currentIndex = 0
+                    score = 0
+                    answered = false
+                    showResult = false
+                }) {
+                    Text("Заново")
+                }
+            }
+        )
+    }
 }
 
 @Preview(showBackground = true)
